@@ -58,8 +58,10 @@ export function get_server_route_handler(routes: ServerRoute[]) {
 				handle_next(err);
 			}
 		} else {
-			// no matching handler for method
-			process.nextTick(next);
+			// resource exists, but no matching handler for method
+			res.statusCode = 405;
+			res.setHeader('Allow', Object.keys(route.handlers).join(', '));
+			res.end('Method Not Allowed');
 		}
 	}
 
