@@ -1,6 +1,6 @@
 {
-  "name": "sapper",
-  "version": "0.27.12",
+  "name": "@hugojosefson/sapper",
+  "version": "0.27.12-method-not-allowed",
   "description": "The next small thing in web development, powered by Svelte",
   "bin": {
     "sapper": "./sapper"
@@ -68,8 +68,7 @@
     "pretest": "npm run build",
     "build": "rm -rf dist && rollup -c",
     "prepare": "npm run build",
-    "dev": "rollup -cw",
-    "prepublishOnly": "npm test"
+    "dev": "rollup -cw"
   },
   "repository": "https://github.com/sveltejs/sapper",
   "keywords": [
