@@ -59,9 +59,15 @@ export function get_server_route_handler(routes: ServerRoute[]) {
 			}
 		} else {
 			// resource exists, but no matching handler for method
-			res.statusCode = 405;
-			res.setHeader('Allow', Object.keys(route.handlers).join(', '));
-			res.end('Method Not Allowed');
+			if (req.method.toLowerCase() === 'options') {
+				res.statusCode = 204;
+				res.setHeader('Allow', Object.keys(route.handlers).join(', '));
+				res.end(); // TODO: Allow overriding the error handler in options
+			} else {
+				res.statusCode = 405;
+				res.setHeader('Allow', Object.keys(route.handlers).join(', '));
+				res.end('Method Not Allowed');
+			}
 		}
 	}
 
